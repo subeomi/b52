@@ -1,6 +1,7 @@
 package org.zerock.b52.security;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
@@ -9,13 +10,20 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.zerock.b52.dto.MemberDTO;
+import org.zerock.b52.dto.MemberReadDTO;
+import org.zerock.b52.mappers.MemberMapper;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @Service
 @Log4j2
+@RequiredArgsConstructor
 public class CustomOAuth2UserService extends DefaultOAuth2UserService{
     
+    private final MemberMapper memberMapper;
+
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
 
@@ -43,7 +51,26 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService{
         log.info(email);
         log.info("===============================");
 
-        return null;
+        MemberReadDTO readDTO = memberMapper.selectOne(email);
+        MemberDTO memberDTO;
+
+        if(readDTO != null){
+            // DB에 해당 이메일 사용자가 있다면
+            memberDTO = new MemberDTO(
+                readDTO.getEmail(), 
+                readDTO.getMpw(), 
+                readDTO.getMname(), 
+                readDTO.getRolenames());
+        }
+ 
+        // 아니라면
+        memberDTO = new MemberDTO(
+            email, 
+            "", 
+            "카카오사용자", 
+            List.of("USER"));
+
+        return memberDTO;
     }
 
 

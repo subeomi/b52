@@ -35,9 +35,9 @@ public class CustomUserDetailsService implements UserDetailsService {
       MemberReadDTO readDTO = memberMapper.selectOne(username);
       log.info(readDTO);
       log.info("----------------------------------------");
-      
+
   MemberDTO memberDTO = new MemberDTO(
-      username, 
+      username,
       readDTO.getMpw(), 
       readDTO.getMname(),
       readDTO.getRolenames()

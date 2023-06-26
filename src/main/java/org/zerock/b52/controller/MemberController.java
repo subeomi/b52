@@ -20,7 +20,7 @@ public class MemberController {
         log.info("signup-----------");
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN')") // hasRole(ROLE_을 제외한 권한) 체크
+    @PreAuthorize("hasAnyRole('ADMIN','USER')") // hasRole(ROLE_을 제외한 권한) 체크
     @GetMapping("/mypage")
     public void mypage(){
         log.info("mypage-----------");

@@ -27,9 +27,9 @@ public class MemberMapperTests {
     @Commit
     public void testInsert(){
 
-        String email = "asdasd@gmail.com";
+        String email = "fb_dpt@naver.com";
         String mpw = passwordEncoder.encode("1111");
-        String mname = "사용자fsdfs";
+        String mname = "아이고수범아";
 
         String rolename = "ADMIN";
 

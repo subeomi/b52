@@ -21,7 +21,6 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler{
         log.info(accessDeniedException);
         log.info("===================================================");
 
-        log.info("===================================================");
     }
     
 }
