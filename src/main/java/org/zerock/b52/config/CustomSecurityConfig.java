@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.zerock.b52.security.CustomOAuth2UserService;
 import org.zerock.b52.security.handler.CustomAccessDeniedHandler;
 
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,8 @@ import lombok.extern.log4j.Log4j2;
 public class CustomSecurityConfig {
 
     private final DataSource dataSource;
+    
+    private final CustomOAuth2UserService customOAuth2UserService;
 
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {

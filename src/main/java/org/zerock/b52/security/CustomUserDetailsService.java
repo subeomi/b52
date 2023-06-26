@@ -35,6 +35,7 @@ public class CustomUserDetailsService implements UserDetailsService {
       MemberReadDTO readDTO = memberMapper.selectOne(username);
       log.info(readDTO);
       log.info("----------------------------------------");
+      
   MemberDTO memberDTO = new MemberDTO(
       username, 
       readDTO.getMpw(), 
@@ -42,15 +43,12 @@ public class CustomUserDetailsService implements UserDetailsService {
       readDTO.getRolenames()
       );
 
-    
-
         // UserDetails user = User.builder()
         // .username(username)
         // .password(passwordEncoder.encode("1111"))
         // .authorities("ROLE_USER", "ROLE_G1")
         // .build();
         
-
         return memberDTO;
     }
     
