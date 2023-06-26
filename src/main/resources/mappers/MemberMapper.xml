@@ -8,6 +8,7 @@
     <resultMap id="memberMap" type="org.zerock.b52.dto.MemberReadDTO">
         <id property="email" column="email"/>
         <result property="mname" column="mname"/>
+        <result property="mpw" column="mpw"/>
         <collection property="rolenames" resultMap="authMap"/>
     </resultMap>
 

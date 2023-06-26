@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.zerock.b52.security.handler.CustomAccessDeniedHandler;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -45,6 +46,10 @@ public class CustomSecurityConfig {
         http.formLogin(config -> {
             config.loginPage("/member/signin");
         });
+
+        http.exceptionHandling(
+            config -> config.accessDeniedHandler(new CustomAccessDeniedHandler())
+            );
 
         http.rememberMe(config -> {
             // 리멤버미는 자동로그인. 쿠키를 다룬다
