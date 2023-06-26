@@ -42,6 +42,7 @@ public class CustomSecurityConfig {
 
         log.info("filter chain------------------------------------");
 
+        // http.formLogin(Customizer.withDefaults());
         // /login 경로 로그인 페이지 띄우기
         http.formLogin(config -> {
             config.loginPage("/member/signin");
@@ -60,6 +61,10 @@ public class CustomSecurityConfig {
 
         http.csrf(config -> {
             config.disable();
+        });
+
+        http.oauth2Login(config -> {
+            config.loginPage("/member/signin");
         });
 
         return http.build();
